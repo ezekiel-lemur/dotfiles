@@ -1,0 +1,300 @@
+;This polybar config is primarily borrowed from https://github.com/abdullaev, thank you for the inspiration!
+
+; monitor = DP-0
+; laptop = LVDS-0
+
+[colors]
+;orange = #FF6200
+;orange = #d65d0e
+darkgray = ${xrdb:color8}
+orange = ${xrdb:color9}
+white = #ebdbb2
+gray = #585858
+black = #090909
+red = #c795ae
+blue = #95aec7
+yellow = #c7ae95
+green = #aec795
+#background = #1f222d
+#background = #4a000000
+background = #aa000000
+background-alt = #4e4e4e
+foreground = #dfdfdf
+;foreground = ${xrdb:foreground}
+foreground-alt = #4e4e4e
+primary = #1f222d
+secondary = #FF6200
+alert = #fb4934
+
+;----------------------------------------------
+
+[bar/tr]
+monitor = LVDS-0
+;bottom = true
+wm-restack = i3
+override-redirect = true
+width = 1260
+height = 26
+offset-x = 10
+offset-y = 10
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+padding-left = 0
+padding-right = 2
+
+module-margin-right = 0
+module-margin-left = 0
+
+modules-right = spotify volume
+modules-center = date menu-apps
+modules-left = i3   
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 0
+underline-color = ${colors.white}
+
+tray-detached = false
+tray-position = 
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 16
+tray-padding = 0
+tray-transparent = false
+tray-scale = 1.0
+
+font-0 = "monospace:size=9;2"
+font-1 = "FontAwesome:size=8;2"
+
+[bar/br]
+monitor = LVDS-0
+;bottom = true
+bottom = true
+wm-restack = i3
+override-redirect = true
+width = 1260
+height = 26
+offset-x = 10
+offset-y = 10
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+padding-left = 0
+padding-right = 0
+
+module-margin-right = 0
+module-margin-left = 0
+
+modules-right = battery 
+modules-center =  
+modules-left = 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 0
+underline-color = ${colors.white}
+
+tray-detached = false
+tray-position = 
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 16
+tray-padding = 0
+tray-transparent = false
+tray-scale = 1.0
+
+font-0 = "monospace:size=9;2"
+font-1 = "FontAwesome:size=8;2"
+
+;----------------------------------------------
+
+[bar/tl]
+monitor = DP-0
+;bottom = true
+wm-restack = i3
+override-redirect = true
+width = 1336
+height = 26
+offset-x = 10
+offset-y = 10
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+padding-left = 0
+padding-right = 0
+
+module-margin-right = 0
+module-margin-left = 0
+
+modules-right = spotify volume
+modules-center = date menu-apps
+modules-left = i3  
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 0
+underline-color = ${colors.white}
+
+tray-detached = false
+tray-position = 
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 16
+tray-padding = 0
+tray-transparent = false
+tray-scale = 1.0
+
+font-0 = "monospace:size=9;2"
+font-1 = "FontAwesome:size=8;2"
+
+;----------------------------------------------
+
+[bar/bl]
+monitor = DP-0
+;bottom = true
+bottom = true
+wm-restack = i3
+override-redirect = true
+width = 1336
+height = 26
+offset-x = 10
+offset-y = 10
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+padding-left = 0
+padding-right = 0
+
+module-margin-right = 0
+module-margin-left = 0
+
+modules-right = battery 
+modules-center =  
+modules-left = 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+underline-size = 0
+underline-color = ${colors.white}
+
+tray-detached = false
+tray-position = 
+tray-offset-x = 0
+tray-offset-y = 0
+;tray-maxsize = 16
+tray-padding = 0
+tray-transparent = false
+tray-scale = 1.0
+
+font-0 = "monospace:size=9;2"
+font-1 = "FontAwesome:size=8;2"
+
+;----------------------------------------------
+
+[module/spotify]
+type = custom/script
+exec = .config/polybar/spotify_p.sh
+tail = true
+interval = 2
+
+
+[module/battery]
+type = internal/battery
+full-at = 99
+battery = BAT0
+adapter = ADP1
+poll-interval = 1
+format-charging = <animation-charging><label-charging>
+format-discharging = <ramp-capacity><label-discharging>
+format-full = <ramp-capacity><label-full>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+format-charging-padding = 2
+format-discharging-padding = 2
+format-ful-padding = 2
+
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-framerate = 750
+
+[module/volume]
+type = internal/volume
+format-volume = <label-volume> 
+format-volume-padding = 2
+format-volume-underline = ${colors.white}
+label-volume = %{F#928374} %{F-}%percentage:3%%
+#label-volume-foreground = ${color.white}
+label-muted =%{F#928374} %{F-}0%
+#label-muted =%{F#928374} %{F-}mute
+format-muted = <label-muted>
+format-muted-underline = ${colors.white}
+format-muted-padding = 2
+#label-muted-foreground = ${colors.gray}
+format-padding = 2
+
+[module/separator]
+type = custom/text
+content = " | "
+content-foreground = #fffff
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+strip-wsnumbers = true
+index-sort = true
+wrapping-scroll = false
+
+label-focused = %name%
+label-focused-background = #88000000
+label-focused-underline= #ddd
+label-focused-padding = 2
+
+label-unfocused = %name%
+label-unfocused-padding = 2
+
+label-occupied = %name%
+label-occupied-padding = 2
+
+label-urgent = %name%
+label-urgent-background = #bd2c40
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-foreground = #44ffffff
+label-empty-padding = 2
+
+label-visible = %name%
+label-visible-background = ${colors.background}
+;label-visible-underline = #383a3b
+label-visible-padding = ${self.label-focused-padding}
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %H:%M:%S
+date-alt = %d-%m-%Y
+format-padding = 2
+

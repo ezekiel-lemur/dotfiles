@@ -1,0 +1,225 @@
+#Ezekiel's .files , thank you Yolan for the original config that this one extensivley borrowed from. 
+
+#Rise & Shine
+exec_always --no-startup-id wal -i ~/Pictures -x
+exec --no-startup-id compton --inactive-dim 0.3 --focus-exclude '_NET_WM_NAME@:s = "rofi"'
+#exec --no-startup-id nitrogen --restore &
+exec always --no-startup-id xset s off
+exec always --no-startupid xset -dpms
+exec always --on-startupid polyp.sh
+exec_always --no-startup-id polybar br &
+exec_always --no-startup-id polybar tr &
+exec_always --no-startup-id polybar bl &
+exec_always --no-startup-id polybar tl &
+#exec --no-startup-id nitrogen --restore & 
+
+#windows decoration (not my cup of tea)
+new_window pixel 0
+
+#apple key (I do not dual boot, I only antergos)
+set $mod Mod4
+
+# Font 
+font pango:monospace 8
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# start a terminal
+bindsym $mod+Return exec termite
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi
+bindsym $mod+d exec "rofi -show drun -lines 15  " 
+bindsym $mod+tab exec "rofi -show window -lines 10  "
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+z layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+#bindsym $mod+Shift+Tab exec oblogout
+
+# Create Log out, Reboot, Poweroff bindings
+mode "E S R P" {
+        bindsym $mod+r exec systemctl reboot
+        bindsym $mod+p exec poweroff
+        bindsym $mod+s exec systemctl suspend
+        bindsym $mod+Shift+e exit
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+
+bindsym $mod+Shift+e mode "E S R P"
+
+
+#display (change as you wish, will only work for my setup)
+
+set $right LVDS-0
+set $left DP-0
+
+exec --no-startup-id xrandr --output LVDS-0 --mode 1280x800  --rotate normal --primary  --right-of DP-0 --output DP-0 --mode 1366x768 --rotate normal --left-of LVDS-0
+
+#Workspace 
+set $WS1 "1: 1" 
+set $WS2 "2: 2" 
+set $WS3 "3: 3" 
+set $WS4 "4: 4"
+set $WS5 "5: 5"
+set $WS6 "6: 6" 
+set $WS7 "7: 7"
+set $WS8 "8: 8"
+set $WS9 "9: 9"
+set $WS0 "10: "
+
+
+########### Automatically putting workspaces on specific screens
+
+workspace $WS1 output $right
+workspace $WS2 output $right
+workspace $WS3 output $right
+workspace $WS4 output $right
+workspace $WS5 output $left
+workspace $WS6 output $left
+workspace $WS7 output $left
+workspace $WS8 output $left
+workspace $WS9 output $left
+workspace $WS0 output $left
+
+# switch to workspace
+bindsym $mod+1 workspace $WS1 
+bindsym $mod+2 workspace $WS2
+bindsym $mod+3 workspace $WS3 
+bindsym $mod+4 workspace $WS4 
+bindsym $mod+5 workspace $WS5 
+bindsym $mod+6 workspace $WS6
+bindsym $mod+7 workspace $WS7
+bindsym $mod+8 workspace $WS8 
+bindsym $mod+9 workspace $WS9 
+bindsym $mod+0 workspace $WS0 
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $WS1
+bindsym $mod+Shift+2 move container to workspace $WS2
+bindsym $mod+Shift+3 move container to workspace $WS3
+bindsym $mod+Shift+4 move container to workspace $WS4
+bindsym $mod+Shift+5 move container to workspace $WS5
+bindsym $mod+Shift+6 move container to workspace $WS6
+bindsym $mod+Shift+7 move container to workspace $WS7
+bindsym $mod+Shift+9 move container to workspace $WS9
+bindsym $mod+Shift+0 move container to workspace $WS0
+
+
+#STARTUP APPLICATION...
+#exec ranger 
+#exec firefox
+#exec encryptr
+#exec discord
+#exec slack
+#exec spotify
+#exec firefox
+#exec urxvt -e cmatrix
+#exec urxvt -e pipes
+
+
+#... AND ORGANIZE THEM BY WS 
+#FIND CLASS OR ELSE WITH xprop
+
+#for_window [title="ranger"] move to workspace $WS1
+#for_window [class=Firefox] move to workspace $WS2
+#for_window [class=Encryptr] move to workspace $WS4
+#for_window [class=Discord] move to workspace $WS3
+#for_window [class=slack] move to workspace $WS4
+#for_window [class=Spotify] move to workspace $WS0
+#for_window [class=firefox] move to workspace $WS2
+#for_window [title="cmatrix"] move to workspace $WS7
+#for_window [title="pipes"] move to workspace $WS1
+#for_window [title="ncmpcpp 0.7.7"] move to workspace 7:$WS7
+# reload the configuration file
+
+bindsym $mod+Shift+c reload
+#restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart 
+#exit i3 (logs you out of your X session)
+
+#gaps and borders
+gaps inner 35 
+gaps outer 15 
+#outer + inner = phi * inner.... solve for outer (little formula for gaps)
+
+#Application shortcut
+bindsym $mod+o exec firefox
+#bindsym $mod+b exec nautilus
+#bindsym $mod+p exec encryptr
+#bindsym $mod+c exec telegram-desktop
+
+#I3 Lock
+bindsym $mod+l exec --no-startup-id ~/.config/i3/blur_lock.sh
+
+# class                 border  bground text    indicator child_border
+client.focused          #4C7899 #070015 #00B7B6 #FFFFFF   #00B7B6
+client.focused_inactive #333333 #070015 #D064F6 #FFFFFF   #5F676A
+client.unfocused        #333333 #070015 #D064F6 #FFFFFF   #222222
+client.urgent           #2F343A #00FF9F #D064F6 #FFFFFF   #900000
+client.placeholder      #000000 #070015 #D064F6 #FFFFFF   #0C0C0C
+
+#Multimedia Keys
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+
+#Keyboard brightness
+bindsym XF86KbdBrightnessUp exec kbdlight up 10
+bindsym XF86KbdBrightnessDown exec kbdlight down 10
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+#Prtscn
+bindsym $mod+p exec --no-startup-id "scrot '%Y-%m-%1d-%H-%M-%S-scrot.png' -e 'mv $f ~/reflect/"
+

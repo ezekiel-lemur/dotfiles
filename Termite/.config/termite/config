@@ -1,0 +1,22 @@
+[options]
+font = monospace 9
+[colors]
+foreground = #cccccc
+background = rgba(29, 28, 28, 0.75)
+color0 = #523A2C
+color1 = #AD8A5E
+color2 = #D5A859
+color3 = #EDC875
+color4 = #897B83
+color5 = #A29498
+color6 = #F6DE9B
+color7 = #E5DBC1
+color8 = #8a8a8a
+color9 = #AD8A5E
+color10 = #D5A859
+color11 = #EDC875
+color12 = #897B83
+color13 = #A29498
+color14 = #F6DE9B
+color15 = #E5DBC1
+
