@@ -1,9 +1,10 @@
-![](Images/1.png?raw=true)
-![](Images/2.png?raw=true)
-![](Images/3.png?raw=true)
-![](Images/4.png?raw=true)
 ![](Images/5.png?raw=true)
 ![](Images/6.png?raw=true)
+![](Images/4.png?raw=true)
+![](Images/3.png?raw=true)
+![](Images/1.png?raw=true)
+
+
 
 I use [GNU Stow ](http://brandon.invergo.net/news/2012-05-26-using-gnu-stow-to-manage-your-dotfiles.html)to manage my dot files.
 
